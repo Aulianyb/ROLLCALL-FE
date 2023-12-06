@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function WelcomePage() {
   return (
     <>
-      <div className="text-center">
+      <div className="text-center mt-5">
         <h2>Welcome to</h2>
         <h1 className="fw-bolder">ROLL CALL</h1>
         <Link to="/login">

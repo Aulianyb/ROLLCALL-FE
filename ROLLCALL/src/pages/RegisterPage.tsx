@@ -9,7 +9,7 @@ export default function RegisterPage() {
   };
   return (
     <>
-      <div className="container-welcome">
+      <div className="container-sm mt-5">
         <h2 className="mb-4 text-center">Start your journey!</h2>
         <form>
           <input
@@ -33,29 +33,33 @@ export default function RegisterPage() {
           <p className="text-center">
             We want to know you better <br /> Pick your favorite games
           </p>
-          <div className="btn-group mb-3" role="group" aria-label="Basic checkbox toggle button group">
-          <input
-            type="checkbox"
-            className="btn-check"
-            id="btn-check-2"
-            checked={isChecked}
-            autoComplete="off"
-            onChange={handleCheckboxChange}
-          />
-          <label className="btn btn-primary" htmlFor="btn-check-2">
-            Checked
-          </label>
-          <input
-            type="checkbox"
-            className="btn-check"
-            id="btn-check-2"
-            checked={isChecked}
-            autoComplete="off"
-            onChange={handleCheckboxChange}
-          />
-          <label className="btn btn-primary" htmlFor="btn-check-2">
-            Checked
-          </label>
+          <div
+            className="btn-group mb-3"
+            role="group"
+            aria-label="Basic checkbox toggle button group"
+          >
+            <input
+              type="checkbox"
+              className="btn-check"
+              id="btn-check-2"
+              checked={isChecked}
+              autoComplete="off"
+              onChange={handleCheckboxChange}
+            />
+            <label className="btn btn-primary" htmlFor="btn-check-2">
+              Checked
+            </label>
+            <input
+              type="checkbox"
+              className="btn-check"
+              id="btn-check-2"
+              checked={isChecked}
+              autoComplete="off"
+              onChange={handleCheckboxChange}
+            />
+            <label className="btn btn-primary" htmlFor="btn-check-2">
+              Checked
+            </label>
           </div>
           <div className="text-center">
             <Link to="/home">

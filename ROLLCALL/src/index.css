@@ -19,12 +19,13 @@ a:hover {
 }
 
 body {
+  background-color: #332f32;
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex; */
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
-  color: rgba(29, 36, 57, 0.87) ;
+  color: antiquewhite ;
 }
 
 h1 {
@@ -35,6 +36,7 @@ h1 {
 .btn {
   transition: transform 0.3s ease;
   border-width: 0;
+
 }
 
 .btn:hover{
@@ -42,6 +44,16 @@ h1 {
   border-width: 0;
 }
 
-.container-welcome{
-  width: 60vh;
+.container-sm{
+  max-width: 400px;
+}
+
+.navbar{
+  background-color: #07a5c3;
+}
+
+.navbar-brand{
+  color: #332f32;
+  font-weight: 700;
+  font-size: 4vh;
 }

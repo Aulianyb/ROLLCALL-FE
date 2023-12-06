@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function LoginPage() {
   return (
     <>
-      <div className="container-welcome">
+      <div className="container-sm mt-5">
         <h2 className="mb-4 text-center">Hello again!</h2>
         <form>
           <div className="mb-3">
