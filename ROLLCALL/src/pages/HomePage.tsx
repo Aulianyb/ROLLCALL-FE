@@ -135,6 +135,10 @@ export default function HomePage() {
     }
   }
 
+  function handleLogout(){
+    localStorage.removeItem("token")
+  }
+
   return (
     <>
       <nav className="navbar">
@@ -159,14 +163,14 @@ export default function HomePage() {
               <a className="nav-link active" aria-current="page" href="#">
                 Create Session
               </a>
-              <a className="nav-link active" aria-current="page" href="/">
+              <a className="nav-link active" aria-current="page" href="/" onClick={()=>handleLogout()}>
                 Logout
               </a>
             </div>
           </div>
         </div>
       </nav>
-      <div className="container mt-3">{renderLoading()}</div>
+      <div className="container my-3">{renderLoading()}</div>
     </>
   );
 }
