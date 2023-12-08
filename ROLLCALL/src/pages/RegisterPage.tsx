@@ -63,6 +63,8 @@ export default function RegisterPage() {
       city: city,
       boardgame: boardgame,
       role: "user",
+      friend : [],
+      reservation : []
     };
 
     let login = {
