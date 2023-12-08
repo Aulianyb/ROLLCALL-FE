@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../client";
-import axios from "axios";
+import { Boardgame } from "../models";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
@@ -18,15 +18,15 @@ export default function RegisterPage() {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  function onChangeUsername(e) {
+  function onChangeUsername(e: any) {
     setUsername(e.target.value);
   }
 
-  function onChangePassword(e) {
+  function onChangePassword(e: any) {
     setPassword(e.target.value);
   }
 
-  function onChangeCity(e) {
+  function onChangeCity(e: any) {
     setCity(e.target.value);
   }
 
@@ -63,8 +63,8 @@ export default function RegisterPage() {
       city: city,
       boardgame: boardgame,
       role: "user",
-      friend : [],
-      reservation : []
+      friend: [],
+      reservation: [],
     };
 
     let login = {
@@ -72,8 +72,6 @@ export default function RegisterPage() {
       password: password,
       grant_type: "password",
       scope: "",
-      client_id: null,
-      client_secret: null,
     };
 
     let formData = new URLSearchParams(Object.entries(login)).toString();
@@ -102,18 +100,17 @@ export default function RegisterPage() {
     componentDidMount();
   }, []);
 
-  function listBoardGames(boardgames: any[]) {
+  function listBoardGames(boardgames: Boardgame[]) {
     const handleCheckboxChange = (
       event: React.ChangeEvent<HTMLInputElement>
     ) => {
       const boardgame = event.target.value;
-
+      let bg_id = +boardgame;
+      console.log(bg_id);
       if (event.target.checked) {
-        setBoardgame((prevGames) => [...prevGames, boardgame]);
+        setBoardgame((prevGames) => [...prevGames, bg_id]);
       } else {
-        setBoardgame((prevGames) =>
-          prevGames.filter((game) => game !== boardgame)
-        );
+        setBoardgame((prevGames) => prevGames.filter((game) => game !== bg_id));
       }
     };
     return boardgames.map((currBoardgame) => {
@@ -189,7 +186,9 @@ export default function RegisterPage() {
           <div className="text-center"></div>
           {/* <input type="submit" className="btn btn-primary btn-custom"></input> */}
         </form>
-        <button className="btn btn-primary btn-sm" onClick={()=>onSubmit()}>Submit</button>
+        <button className="btn btn-primary btn-sm" onClick={() => onSubmit()}>
+          Submit
+        </button>
       </div>
     </>
   );

@@ -10,23 +10,23 @@ export default function LoginPage() {
   const [loginStatus, setloginStatus] = useState("");
   const navigate = useNavigate();
 
-  function onChangeUsername(e) {
+  function onChangeUsername(e: any) {
     setUsername(e.target.value);
   }
 
-  function onChangePassword(e) {
+  function onChangePassword(e: any) {
     setPassword(e.target.value);
   }
 
-  async function onSubmit(e) {
-    e.preventDefault(); 
+  async function onSubmit(e: any) {
+    e.preventDefault();
     let jsonObject = {
       username: username,
       password: password,
       grant_type: "password",
       scope: "",
-      client_id: null,
-      client_secret: null,
+      // client_id: null,
+      // client_secret: null,
     };
 
     let formData = new URLSearchParams(Object.entries(jsonObject)).toString();

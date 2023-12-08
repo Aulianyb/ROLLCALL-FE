@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import apiClient from "../client";
 import Spinner from "../components/spinner";
+import { Boardgame, User, City } from "../models"; 
 
 export default function HomePage() {
-  const [user, setUser] = useState(null);
-  const [cityData, setCityData] = useState([]);
-  const [boardgameData, setBoardgameData] = useState([]);
+
+  const [user, setUser] = useState<User>();
+  const [cityData, setCityData] = useState<City[]>([]);
+  const [boardgameData, setBoardgameData] = useState<Boardgame[]>([]);
   const [matches, setMatches] = useState([]);
 
   function componentDidMount() {
@@ -73,12 +75,12 @@ export default function HomePage() {
       <>
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">{user.username}</h5>
+          {user && <h5 className="card-title">{user.username}</h5>}
             <span className="badge text-bg-secondary">
-              {cityData[user.city - 1].name}
+              {user && cityData[user.city - 1].name}
             </span>
             <br />
-            {boardgameList(user.boardgame)}
+            {user && boardgameList(user.boardgame)}
           </div>
         </div>
       </>
