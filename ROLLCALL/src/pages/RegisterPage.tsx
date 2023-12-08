@@ -10,12 +10,12 @@ export default function RegisterPage() {
   const [boardgameData, setBoardgameData] = useState([]);
   const [cityData, setCityData] = useState([]);
   const navigate = useNavigate();
-  
+
   function getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); 
-   }
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
   function onChangeUsername(e) {
     setUsername(e.target.value);
@@ -38,7 +38,7 @@ export default function RegisterPage() {
       })
       .then((res) => {
         setBoardgameData(res.data);
-        console.log(boardgameData);
+        console.log(res.data);
       });
 
     apiClient
@@ -54,14 +54,14 @@ export default function RegisterPage() {
   }
 
   function onSubmit() {
-    // e.preventdefault()
+    // e.preventdefault();
     let user = {
-      id : getRandomInt(1, 1000),
+      id: getRandomInt(1, 100000000),
       username: username,
       password: password,
       city: city,
       boardgame: boardgame,
-      role : "user"
+      role: "user",
     };
 
     let login = {
@@ -71,26 +71,26 @@ export default function RegisterPage() {
       scope: "",
       client_id: null,
       client_secret: null,
-    }
+    };
 
     let formData = new URLSearchParams(Object.entries(login)).toString();
 
-    apiClient.post("/user", user)
-    .then((res)=>{
-      console.log(res)
-      apiClient.post("/token", formData)
-      .then((res) => {
-        if (res.data.access_token) {
-          localStorage.setItem("token", res.data.access_token);
-          navigate("/home");
-        }
-      }).catch((error) => {
-        if (error.response && error.response.status === 401) {
-          // setlStatus("invalid");
-        }
-      });
-      }
-    )
+    apiClient.post("/register", user).then((res) => {
+      console.log(res);
+      apiClient
+        .post("/token", formData)
+        .then((res) => {
+          if (res.data.access_token) {
+            localStorage.setItem("token", res.data.access_token);
+            navigate("/home");
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 401) {
+            // setlStatus("invalid");
+          }
+        });
+    });
 
     console.log(user);
   }
@@ -100,13 +100,17 @@ export default function RegisterPage() {
   }, []);
 
   function listBoardGames(boardgames: any[]) {
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCheckboxChange = (
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => {
       const boardgame = event.target.value;
-   
+
       if (event.target.checked) {
-        setBoardgame(prevGames => [...prevGames, boardgame]);
+        setBoardgame((prevGames) => [...prevGames, boardgame]);
       } else {
-        setBoardgame(prevGames => prevGames.filter(game => game !== boardgame));
+        setBoardgame((prevGames) =>
+          prevGames.filter((game) => game !== boardgame)
+        );
       }
     };
     return boardgames.map((currBoardgame) => {
@@ -118,11 +122,11 @@ export default function RegisterPage() {
             id={`btncheck${currBoardgame.id}`}
             onChange={handleCheckboxChange}
             value={currBoardgame.id}
-            autocomplete="off"
+            autoComplete="off"
           />
           <label
             className="btn btn-dark m-1"
-            for={`btncheck${currBoardgame.id}`}
+            htmlFor={`btncheck${currBoardgame.id}`}
           >
             {currBoardgame.name}
           </label>
@@ -145,7 +149,7 @@ export default function RegisterPage() {
     <>
       <div className="container-sm mt-5">
         <h2 className="mb-4 text-center">Start your journey!</h2>
-        <form onSubmit={onSubmit}>
+        <form>
           <input
             placeholder="Username"
             type="text"
@@ -180,14 +184,9 @@ export default function RegisterPage() {
             {listBoardGames(boardgameData)}
           </div>
           <div className="text-center"></div>
+          {/* <input type="submit" className="btn btn-primary btn-custom"></input> */}
         </form>
-        <button
-          className="btn btn-primary"
-          type="submit"
-          onClick={() => onSubmit()}
-        >
-          Submit form
-        </button>
+        <button className="btn btn-primary btn-sm" onClick={()=>onSubmit()}>Submit</button>
       </div>
     </>
   );

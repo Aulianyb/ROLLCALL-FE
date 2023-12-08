@@ -75,7 +75,7 @@ export default function HomePage() {
           <div className="card-body">
             <h5 className="card-title">{user.username}</h5>
             <span className="badge text-bg-secondary">
-              {cityData[user.city].name}
+              {cityData[user.city - 1].name}
             </span>
             <br />
             {boardgameList(user.boardgame)}
@@ -94,7 +94,7 @@ export default function HomePage() {
               <div className="card-body">
                 <h5 className="card-title">{currMatch[0].username}</h5>
                 <span className="badge text-bg-secondary">
-                  {cityData[currMatch[0].city].name}
+                  {cityData[currMatch[0].city-1].name}
                 </span>
                 <br />
                 {boardgameList(currMatch[0].boardgame)}
