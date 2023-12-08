@@ -10,7 +10,7 @@ export default function HomePage() {
 
   function componentDidMount() {
     apiClient
-      .get("/city", {
+      .get("/city/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -21,7 +21,7 @@ export default function HomePage() {
       });
 
     apiClient
-      .get("/boardgame", {
+      .get("/boardgame/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -43,7 +43,7 @@ export default function HomePage() {
       });
 
     apiClient
-      .get("/matchmaking", {
+      .get("/matchmaking/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

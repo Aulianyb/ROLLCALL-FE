@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../client";
+import axios from "axios";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
@@ -31,7 +32,7 @@ export default function RegisterPage() {
 
   function componentDidMount() {
     apiClient
-      .get("/boardgame", {
+      .get("/boardgame/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -42,7 +43,7 @@ export default function RegisterPage() {
       });
 
     apiClient
-      .get("/city", {
+      .get("/city/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
